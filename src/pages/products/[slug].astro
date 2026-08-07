@@ -24,8 +24,16 @@ const deck = p.deck ?? [];
 		</div>
 		<p class="pv-tagline">{p.tagline}</p>
 
-		<div class="pv-section">
-			<h2><span class="n">1</span>Description</h2>
+		<nav class="pv-subnav">
+			<a href="/">Home</a>
+			<a href="#pv-sec-description">Description</a>
+			<a href="#pv-sec-download">Download</a>
+			<a href="#pv-sec-privacy">Privacy Statement</a>
+			<a href="#pv-sec-support">Support</a>
+		</nav>
+
+		<div class="pv-section" id="pv-sec-description">
+			<h2>Description</h2>
 			<p>{p.description}</p>
 			<ul>
 				{p.features.map((f: string) => <li>{f}</li>)}
@@ -45,8 +53,8 @@ const deck = p.deck ?? [];
 			)}
 		</div>
 
-		<div class="pv-section">
-			<h2><span class="n">2</span>Download</h2>
+		<div class="pv-section" id="pv-sec-download">
+			<h2>Download</h2>
 			{p.githubUrl ? (
 				<>
 					<div class="download-row">
@@ -68,13 +76,13 @@ const deck = p.deck ?? [];
 			)}
 		</div>
 
-		<div class="pv-section">
-			<h2><span class="n">3</span>Privacy Statement</h2>
+		<div class="pv-section" id="pv-sec-privacy">
+			<h2>Privacy Statement</h2>
 			<div class="privacy-body" set:html={p.privacy} />
 		</div>
 
-		<div class="pv-section">
-			<h2><span class="n">4</span>Support / Contact Us / Feedback / Suggestions</h2>
+		<div class="pv-section" id="pv-sec-support">
+			<h2>Support / Contact Us / Feedback / Suggestions</h2>
 			<div class="support-grid">
 				<div class="support-item">
 					<div class="label">Contact Us</div>

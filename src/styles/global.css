@@ -129,7 +129,10 @@ section.about p{color:var(--text-dim);font-size:17px;}
 .pv-header .product-icon{margin-bottom:0;width:60px;height:60px;font-size:30px;}
 .pv-header h1{font-size:36px;font-weight:800;margin:0;}
 .pv-tagline{color:var(--text-dim);font-size:17px;margin:14px 0 40px;}
-.pv-section{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:30px 32px;margin-bottom:22px;}
+.pv-subnav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 36px;padding:12px 16px;background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);position:sticky;top:12px;z-index:5;}
+.pv-subnav a{color:var(--text-dim);font-size:14px;font-weight:600;text-decoration:none;padding:6px 12px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;}
+.pv-subnav a:hover{color:#fff;background:rgba(255,255,255,0.06);}
+.pv-section{background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);padding:30px 32px;margin-bottom:22px;scroll-margin-top:20px;}
 .pv-section h2{font-size:20px;font-weight:700;margin:0 0 14px;display:flex;align-items:center;gap:10px;}
 .pv-section h2 .n{width:28px;height:28px;border-radius:8px;background:var(--accent-grad);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;font-weight:700;}
 .pv-section p, .pv-section li{color:#d5d8ee;font-size:15px;}

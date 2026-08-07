@@ -8,6 +8,7 @@ export interface Product {
   privacy: string;
   supportEmail: string;
   deck?: string[];
+  githubUrl?: string;
 }
 
 export const PRODUCTS: Record<string, Product> = {
@@ -94,6 +95,7 @@ export const PRODUCTS: Record<string, Product> = {
     privacy:
       "<p>Location-Based Budget uses your location only to adjust cost-of-living calculations. Financial data is encrypted at rest and in transit, and is never sold or shared with third-party advertisers. You can export or delete your data at any time from account settings.</p>",
     supportEmail: "budget-support@mba-labs.com",
+    githubUrl: "https://github.com/rmbartis/budget",
   },
 };
 

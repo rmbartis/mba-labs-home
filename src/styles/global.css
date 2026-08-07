@@ -141,6 +141,9 @@ section.about p{color:var(--text-dim);font-size:17px;}
 .appstore-badge-text{display:flex;flex-direction:column;line-height:1.15;}
 .appstore-badge-text small{font-size:10.5px;font-weight:400;color:#e2e2e2;}
 .appstore-badge-text strong{font-size:18px;font-weight:600;color:#fff;letter-spacing:0.2px;}
+.github-badge .appstore-badge-icon{font-size:16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;}
+.download-note{color:var(--text-dim);font-size:14px;margin:14px 0 8px;}
+.code-block{background:rgba(255,255,255,0.04);border:1px solid var(--card-border);border-radius:8px;padding:12px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;color:#d5d8ee;overflow-x:auto;}
 .privacy-body p{margin:0 0 12px;}
 .privacy-body p:last-child{margin-bottom:0;}
 .privacy-body h3{font-size:15px;font-weight:700;color:#fff;margin:20px 0 6px;}

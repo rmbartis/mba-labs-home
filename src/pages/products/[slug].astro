@@ -47,12 +47,25 @@ const deck = p.deck ?? [];
 
 		<div class="pv-section">
 			<h2><span class="n">2</span>Download</h2>
-			<div class="download-row">
-				<a class="appstore-badge" href="#" aria-label="Download on the App Store">
-					<span class="appstore-badge-icon"></span>
-					<span class="appstore-badge-text"><small>Download on the</small><strong>App Store</strong></span>
-				</a>
-			</div>
+			{p.githubUrl ? (
+				<>
+					<div class="download-row">
+						<a class="appstore-badge github-badge" href={p.githubUrl} target="_blank" rel="noopener">
+							<span class="appstore-badge-icon">&lt;/&gt;</span>
+							<span class="appstore-badge-text"><small>View source on</small><strong>GitHub</strong></span>
+						</a>
+					</div>
+					<p class="download-note">{p.name} isn't on the App Store yet. Clone the repository and build it from source:</p>
+					<div class="code-block">git clone {p.githubUrl}.git</div>
+				</>
+			) : (
+				<div class="download-row">
+					<a class="appstore-badge" href="#" aria-label="Download on the App Store">
+						<span class="appstore-badge-icon"></span>
+						<span class="appstore-badge-text"><small>Download on the</small><strong>App Store</strong></span>
+					</a>
+				</div>
+			)}
 		</div>
 
 		<div class="pv-section">

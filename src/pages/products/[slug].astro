@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { PRODUCTS } from '../../data/products';
+
+export function getStaticPaths() {
+	return Object.keys(PRODUCTS).map((slug) => ({
+		params: { slug },
+		props: { product: PRODUCTS[slug] },
+	}));
+}
+
+const { product: p } = Astro.props;
+const deck = p.deck ?? [];
+---
+
+<Layout title={`${p.name} — MBA-Labs`} description={p.tagline}>
+	<div class="product-view">
+		<a class="back-link" href="/#products-section">← Back to all products</a>
+		<div class="pv-header">
+			<div class="product-icon">
+				{p.icon.startsWith('/') ? <img src={p.icon} alt={`${p.name} icon`} /> : p.icon}
+			</div>
+			<h1>{p.name}</h1>
+		</div>
+		<p class="pv-tagline">{p.tagline}</p>
+
+		<div class="pv-section">
+			<h2><span class="n">1</span>Description</h2>
+			<p>{p.description}</p>
+			<ul>
+				{p.features.map((f: string) => <li>{f}</li>)}
+			</ul>
+
+			{deck.length > 0 && (
+				<div class="deck">
+					<div class="deck-row">
+						<button class="deck-arrow deck-prev" id="deck-prev" aria-label="Previous slide" type="button">‹</button>
+						<div class="deck-frame">
+							<img id="deck-img" src={deck[0]} alt={`${p.name} slide deck, slide 1 of ${deck.length}`} />
+						</div>
+						<button class="deck-arrow deck-next" id="deck-next" aria-label="Next slide" type="button">›</button>
+					</div>
+					<div class="deck-counter" id="deck-counter">1 / {deck.length}</div>
+				</div>
+			)}
+		</div>
+
+		<div class="pv-section">
+			<h2><span class="n">2</span>Download</h2>
+			<div class="download-row">
+				<a class="appstore-badge" href="#" aria-label="Download on the App Store">
+					<span class="appstore-badge-icon"></span>
+					<span class="appstore-badge-text"><small>Download on the</small><strong>App Store</strong></span>
+				</a>
+			</div>
+		</div>
+
+		<div class="pv-section">
+			<h2><span class="n">3</span>Privacy Statement</h2>
+			<div class="privacy-body" set:html={p.privacy} />
+		</div>
+
+		<div class="pv-section">
+			<h2><span class="n">4</span>Support / Contact Us / Feedback / Suggestions</h2>
+			<div class="support-grid">
+				<div class="support-item">
+					<div class="label">Contact Us</div>
+					<div class="value"><a href={`mailto:${p.supportEmail}`}>{p.supportEmail}</a></div>
+				</div>
+				<div class="support-item">
+					<div class="label">Response Time</div>
+					<div class="value">Within 3 business days</div>
+				</div>
+			</div>
+			<form class="feedback-form" id="feedback-form">
+				<label class="label" style="display:block;margin-top:18px;font-size:13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em;">Feedback &amp; Suggestions</label>
+				<textarea placeholder="Tell us what you'd like to see, or report an issue..."></textarea>
+				<button type="submit" class="btn btn-primary">Send Feedback</button>
+				<p class="form-msg">Thanks — your feedback has been received.</p>
+			</form>
+		</div>
+	</div>
+</Layout>
+
+<script define:vars={{ deck, productName: p.name }}>
+	if (deck.length > 0) {
+		let deckIndex = 0;
+		const deckImg = document.getElementById('deck-img');
+		const deckCounter = document.getElementById('deck-counter');
+		const update = () => {
+			deckImg.src = deck[deckIndex];
+			deckImg.alt = `${productName} slide deck, slide ${deckIndex + 1} of ${deck.length}`;
+			deckCounter.textContent = `${deckIndex + 1} / ${deck.length}`;
+		};
+		document.getElementById('deck-prev').addEventListener('click', () => {
+			deckIndex = (deckIndex - 1 + deck.length) % deck.length;
+			update();
+		});
+		document.getElementById('deck-next').addEventListener('click', () => {
+			deckIndex = (deckIndex + 1) % deck.length;
+			update();
+		});
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowLeft') { deckIndex = (deckIndex - 1 + deck.length) % deck.length; update(); }
+			if (e.key === 'ArrowRight') { deckIndex = (deckIndex + 1) % deck.length; update(); }
+		});
+	}
+
+	const form = document.getElementById('feedback-form');
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+		form.querySelector('.form-msg').style.display = 'block';
+		form.querySelector('textarea').value = '';
+	});
+</script>

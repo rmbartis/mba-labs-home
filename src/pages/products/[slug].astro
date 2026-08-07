@@ -2,10 +2,54 @@
 import Layout from '../../layouts/Layout.astro';
 import { PRODUCTS } from '../../data/products';
 
-export function getStaticPaths() {
-	return Object.keys(PRODUCTS).map((slug) => ({
+// Extracts the substantive markup from the standalone privacy.html doc
+// (the single source of truth, maintained in the GeoNap app repo) and
+// reshapes it to match the tag/class conventions the dark-themed
+// .privacy-body styles on this site expect.
+function extractPrivacyHtml(raw: string): string | null {
+	const containerMatch = raw.match(/<div class="container">([\s\S]*?)<\/div>\s*<\/body>/);
+	let html = containerMatch ? containerMatch[1] : null;
+	if (!html) return null;
+
+	const updatedMatch = html.match(/<p class="updated">(Last updated:.*?)<\/p>/);
+	const updatedLine = updatedMatch ? `<p class="privacy-updated">${updatedMatch[1]}</p>` : '';
+	html = html.replace(/<header>[\s\S]*?<\/header>/, updatedLine);
+
+	html = html.replace('<p class="intro">', '<p>');
+	html = html.replace(/<section(?:\s+id="[^"]*")?>/g, '').replace(/<\/section>/g, '');
+	html = html.replace(/<h2>/g, '<h3>').replace(/<\/h2>/g, '</h3>');
+	html = html.replace(/<footer>\s*([\s\S]*?)\s*<\/footer>/, (_m, inner) => `<p class="privacy-footer">${inner.trim()}</p>`);
+
+	return html.trim();
+}
+
+export async function getStaticPaths() {
+	const products = { ...PRODUCTS };
+
+	for (const slug of Object.keys(products)) {
+		const product = products[slug];
+		if (!product.privacyUrl) continue;
+		try {
+			const res = await fetch(product.privacyUrl);
+			if (!res.ok) {
+				console.warn(`[privacy] fetch failed (${res.status}) for ${product.privacyUrl}, using bundled fallback`);
+				continue;
+			}
+			const raw = await res.text();
+			const extracted = extractPrivacyHtml(raw);
+			if (extracted) {
+				products[slug] = { ...product, privacy: extracted };
+			} else {
+				console.warn(`[privacy] could not parse ${product.privacyUrl}, using bundled fallback`);
+			}
+		} catch (err) {
+			console.warn(`[privacy] fetch error for ${product.privacyUrl}, using bundled fallback:`, err);
+		}
+	}
+
+	return Object.keys(products).map((slug) => ({
 		params: { slug },
-		props: { product: PRODUCTS[slug] },
+		props: { product: products[slug] },
 	}));
 }
 

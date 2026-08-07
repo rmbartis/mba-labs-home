@@ -6,6 +6,7 @@ export interface Product {
   description: string;
   features: string[];
   privacy: string;
+  privacyUrl?: string;
   supportEmail: string;
   deck?: string[];
   githubUrl?: string;
@@ -26,6 +27,8 @@ export const PRODUCTS: Record<string, Product> = {
       "Personalized nap reminders",
       "Offline-friendly maps",
     ],
+    privacyUrl:
+      "https://raw.githubusercontent.com/rmbartis/GeoNap/main/docs/privacy.html",
     privacy: `
       <p class="privacy-updated">Last updated: July 12, 2026</p>
       <p>GeoNap is designed with a simple principle: your location and alarm data belong to you. This document explains exactly what information the app uses, where it stays, and what it never does.</p>

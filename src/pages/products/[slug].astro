@@ -134,3 +134,35 @@ const deck = p.deck ?? [];
 		form.querySelector('textarea').value = '';
 	});
 </script>
+
+<script>
+	function pvOffset() {
+		const header = document.querySelector('header.nav');
+		const subnav = document.querySelector('.pv-subnav');
+		const h = header ? header.offsetHeight : 160;
+		const s = subnav ? subnav.offsetHeight : 56;
+		return h + s + 16;
+	}
+	function scrollToId(id, smooth) {
+		const el = document.getElementById(id);
+		if (!el) return;
+		const top = el.getBoundingClientRect().top + window.pageYOffset - pvOffset();
+		window.scrollTo({ top: Math.max(top, 0), behavior: smooth ? 'smooth' : 'auto' });
+	}
+	document.querySelectorAll('.pv-subnav a[href^="#"]').forEach((a) => {
+		a.addEventListener('click', (e) => {
+			e.preventDefault();
+			const id = a.getAttribute('href').slice(1);
+			history.pushState(null, '', '#' + id);
+			scrollToId(id, true);
+		});
+	});
+	if (location.hash) {
+		const id = location.hash.slice(1);
+		// Let the browser's own (imprecise) jump happen first, then correct it
+		// once fonts/images have settled so the heading isn't hidden behind
+		// the sticky header + subnav.
+		window.addEventListener('load', () => scrollToId(id, false));
+		setTimeout(() => scrollToId(id, false), 300);
+	}
+</script>

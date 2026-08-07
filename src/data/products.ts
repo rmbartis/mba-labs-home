@@ -75,7 +75,7 @@ export const PRODUCTS: Record<string, Product> = {
       <p>If you have questions about privacy or data handling, you can reach the developer through the App Store support link on GeoNap's product page.</p>
       <p class="privacy-footer">&copy; 2026 Robert Bartis. All rights reserved.</p>
     `,
-    supportEmail: "geonapios@gmail.com",
+    supportEmail: "geonap@mba-labs.com",
     deck: Array.from({ length: 19 }, (_, i) => `/deck/geonap/slide-${String(i + 1).padStart(2, "0")}.jpg`),
   },
   budget: {
@@ -94,7 +94,7 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     privacy:
       "<p>Location-Based Budget uses your location only to adjust cost-of-living calculations. Financial data is encrypted at rest and in transit, and is never sold or shared with third-party advertisers. You can export or delete your data at any time from account settings.</p>",
-    supportEmail: "budget-support@mba-labs.com",
+    supportEmail: "locationbudget@mba-labs.com",
     githubUrl: "https://github.com/rmbartis/budget",
   },
 };

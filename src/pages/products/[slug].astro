@@ -13,7 +13,9 @@ function extractPrivacyHtml(raw: string): string | null {
 
 	const updatedMatch = html.match(/<p class="updated">(Last updated:.*?)<\/p>/);
 	const updatedLine = updatedMatch ? `<p class="privacy-updated">${updatedMatch[1]}</p>` : '';
-	html = html.replace(/<header>[\s\S]*?<\/header>/, updatedLine);
+	const noteMatch = html.match(/<p class="updated web-note">([\s\S]*?)<\/p>/);
+	const noteLine = noteMatch ? `<p class="privacy-note">${noteMatch[1]}</p>` : '';
+	html = html.replace(/<header>[\s\S]*?<\/header>/, updatedLine + noteLine);
 
 	html = html.replace('<p class="intro">', '<p>');
 	html = html.replace(/<section(?:\s+id="[^"]*")?>/g, '').replace(/<\/section>/g, '');

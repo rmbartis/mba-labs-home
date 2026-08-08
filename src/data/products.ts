@@ -31,7 +31,7 @@ export const PRODUCTS: Record<string, Product> = {
       "https://raw.githubusercontent.com/rmbartis/GeoNap/main/docs/privacy.html",
     privacy: `
       <p class="privacy-updated">Last updated: July 12, 2026</p>
-      <p class="privacy-note">This policy is also available online at <a href="https://mba-labs.com/products/geonap/#pv-sec-privacy">mba-labs.com/products/geonap</a>.</p>
+      <p class="privacy-note">This policy is also available online at <a href="#pv-sec-privacy">mba-labs.com/products/geonap</a>.</p>
       <p>GeoNap is designed with a simple principle: your location and alarm data belong to you. This document explains exactly what information the app uses, where it stays, and what it never does.</p>
       <hr>
       <h3>Location Data</h3>

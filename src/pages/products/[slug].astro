@@ -14,7 +14,12 @@ function extractPrivacyHtml(raw: string): string | null {
 	const updatedMatch = html.match(/<p class="updated">(Last updated:.*?)<\/p>/);
 	const updatedLine = updatedMatch ? `<p class="privacy-updated">${updatedMatch[1]}</p>` : '';
 	const noteMatch = html.match(/<p class="updated web-note">([\s\S]*?)<\/p>/);
-	const noteLine = noteMatch ? `<p class="privacy-note">${noteMatch[1]}</p>` : '';
+	// The standalone doc links out with a full URL (it's viewed off-site); on
+	// the site itself that should be an in-page hash link so our JS-measured
+	// scroll offset (see scrollToId below) handles it instead of the browser's
+	// native, imprecise fragment jump.
+	const noteInner = noteMatch ? noteMatch[1].replace(/href="https:\/\/mba-labs\.com\/products\/geonap\/#pv-sec-privacy"/, 'href="#pv-sec-privacy"') : '';
+	const noteLine = noteInner ? `<p class="privacy-note">${noteInner}</p>` : '';
 	html = html.replace(/<header>[\s\S]*?<\/header>/, updatedLine + noteLine);
 
 	html = html.replace('<p class="intro">', '<p>');
@@ -195,7 +200,7 @@ const deck = p.deck ?? [];
 		const top = el.getBoundingClientRect().top + window.pageYOffset - pvOffset();
 		window.scrollTo({ top: Math.max(top, 0), behavior: smooth ? 'smooth' : 'auto' });
 	}
-	document.querySelectorAll('.pv-subnav a[href^="#"]').forEach((a) => {
+	document.querySelectorAll('.pv-subnav a[href^="#"], .privacy-body a[href^="#"]').forEach((a) => {
 		a.addEventListener('click', (e) => {
 			e.preventDefault();
 			const id = a.getAttribute('href').slice(1);

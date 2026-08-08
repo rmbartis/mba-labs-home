@@ -49,11 +49,11 @@ export const PRODUCTS: Record<string, Product> = {
       <h3>Auto-Notify Contacts</h3>
       <p>If you use the optional Auto-Notify feature, you can pick contacts to automatically message when an alarm fires. Picking a contact uses Apple's system contact picker — GeoNap never gets bulk or ongoing access to your address book, only the specific contact(s) you choose.</p>
       <p>For each contact you add, GeoNap stores that contact's name and phone number or email address — nothing else from their contact card. This is saved using SwiftData and, like your alarms, is optionally synced via iCloud so your Auto-Notify contacts carry over to your other devices signed into the same Apple ID.</p>
-      <p>Contact info is never transmitted to any server the developer operates. It's only used to address the message you configure, sent through Messages or a Shortcuts automation you control. You can remove a contact from an alarm or from Auto-Notify Defaults at any time in Settings.</p>
+      <p>Contact info is never transmitted to any server I operate. It's only used to address the message you configure, sent through Messages or a Shortcuts automation you control. You can remove a contact from an alarm or from Auto-Notify Defaults at any time in Settings.</p>
       <hr>
       <h3>Apple Watch</h3>
       <p>If you use GeoNap with a paired Apple Watch, the iPhone app shares your active alarms — name, location-derived region, radius, and status — with the Watch app so it can show and alert on them.</p>
-      <p>This data is sent device-to-device using Apple's WatchConnectivity framework; it never passes through any server the developer operates. On the Watch, it's stored in a shared App Group container local to that device so both the Watch app and its complication can read it — it is not synced to iCloud from the Watch.</p>
+      <p>This data is sent device-to-device using Apple's WatchConnectivity framework; it never passes through any server I operate. On the Watch, it's stored in a shared App Group container local to that device so both the Watch app and its complication can read it — it is not synced to iCloud from the Watch.</p>
       <p>If you enable the optional debug log, it may record when a Watch is paired or unpaired, or when the GeoNap Watch app is installed or removed, to help diagnose sync issues. It does not record your alarm data itself. Uninstalling GeoNap from your Watch, or unpairing the Watch, removes this shared copy.</p>
       <hr>
       <h3>Transit Feed Downloads</h3>

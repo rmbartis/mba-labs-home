@@ -14,7 +14,9 @@ const { title, description, image = '/icons/mba-labs-logo.png' } = Astro.props;
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/png" href="/icons/mba-labs-logo.png" />
+<!-- Bump the ?v= query whenever the logo file changes -- browsers cache
+     favicons very aggressively and often ignore normal HTTP cache headers. -->
+<link rel="icon" type="image/png" href="/icons/mba-labs-logo.png?v=2026-08-08" />
 <meta name="generator" content={Astro.generator} />
 
 <link rel="canonical" href={canonicalURL} />

@@ -1,0 +1,119 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+interface KnownIssue {
+	title: string;
+	reported: string;
+	description: string;
+	workaround: string;
+	expectedResolution: string;
+	resolved: string;
+}
+
+const issues: KnownIssue[] = [
+	{
+		title: 'Calendar Scanning: trips found but no notification',
+		reported: '19-Aug-2026',
+		description:
+			'Calendar Scanning may find upcoming trips from your calendar and list them correctly under Settings → Calendar Scanning → Review Pending Trips, but not send a notification to let you know they were found.',
+		workaround:
+			'In the app, go to Settings → Calendar Scanning, then turn "Notify Me About New Trips" off and back on. This prompts iOS to ask for notification permission — tap Allow when it appears. Once granted, future trips found by Calendar Scanning will notify you as expected.',
+		expectedResolution: 'Next build',
+		resolved: 'Pending',
+	},
+];
+---
+
+<Layout title="GeoNap — Known Issues — MBA-Labs" description="Known issues and workarounds for GeoNap.">
+	<div class="product-view">
+		<a class="back-link" href="/products/geonap">← Back to GeoNap</a>
+		<div class="pv-header">
+			<div class="product-icon">
+				<img src="/icons/geonap-icon.png" alt="GeoNap icon" />
+			</div>
+			<h1>GeoNap — Known Issues</h1>
+		</div>
+		<p class="pv-tagline">We list known issues here along with workarounds while fixes are prepared for the next App Store build.</p>
+
+		{issues.map((issue) => (
+			<div class="pv-section known-issue">
+				<h2>{issue.title}</h2>
+				<dl class="issue-meta">
+					<div class="issue-row">
+						<dt>Issue Reported</dt>
+						<dd>{issue.reported}</dd>
+					</div>
+					<div class="issue-row">
+						<dt>Issue Description</dt>
+						<dd>{issue.description}</dd>
+					</div>
+					<div class="issue-row">
+						<dt>Work Around</dt>
+						<dd>{issue.workaround}</dd>
+					</div>
+					<div class="issue-row">
+						<dt>Expected Resolution</dt>
+						<dd>{issue.expectedResolution}</dd>
+					</div>
+					<div class="issue-row">
+						<dt>Issue Resolved</dt>
+						<dd><span class={`issue-status ${issue.resolved === 'Pending' ? 'is-pending' : 'is-resolved'}`}>{issue.resolved}</span></dd>
+					</div>
+				</dl>
+			</div>
+		))}
+	</div>
+</Layout>
+
+<style>
+	.issue-meta {
+		margin: 0;
+	}
+	.issue-row {
+		display: grid;
+		grid-template-columns: 180px 1fr;
+		gap: 16px;
+		padding: 12px 0;
+		border-top: 1px solid var(--card-border);
+	}
+	.issue-row:first-child {
+		border-top: none;
+		padding-top: 0;
+	}
+	.issue-row dt {
+		color: var(--text-dim);
+		font-size: 13px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+	.issue-row dd {
+		margin: 0;
+		color: #d5d8ee;
+		font-size: 15px;
+	}
+	.issue-status {
+		display: inline-flex;
+		align-items: center;
+		padding: 3px 10px;
+		border-radius: 999px;
+		font-size: 13px;
+		font-weight: 600;
+	}
+	.issue-status.is-pending {
+		background: rgba(246, 189, 109, 0.14);
+		border: 1px solid rgba(246, 189, 109, 0.35);
+		color: #f6bd6d;
+	}
+	.issue-status.is-resolved {
+		background: rgba(109, 246, 160, 0.14);
+		border: 1px solid rgba(109, 246, 160, 0.35);
+		color: #6df6a0;
+	}
+	@media (max-width: 640px) {
+		.issue-row {
+			grid-template-columns: 1fr;
+			gap: 4px;
+		}
+	}
+</style>

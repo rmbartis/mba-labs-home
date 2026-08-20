@@ -10,6 +10,7 @@ export interface Product {
   supportEmail: string;
   deck?: string[];
   githubUrl?: string;
+  knownIssuesUrl?: string;
 }
 
 export const PRODUCTS: Record<string, Product> = {
@@ -81,6 +82,7 @@ export const PRODUCTS: Record<string, Product> = {
     `,
     supportEmail: "geonap@mba-labs.com",
     deck: Array.from({ length: 19 }, (_, i) => `/deck/geonap/slide-${String(i + 1).padStart(2, "0")}.jpg`),
+    knownIssuesUrl: "/products/geonap/known-issues",
   },
   budget: {
     slug: "budget",

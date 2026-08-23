@@ -12,14 +12,14 @@ interface KnownIssue {
 
 const issues: KnownIssue[] = [
 	{
-		title: 'Calendar Scanning: trips found but no notification',
-		reported: '19-Aug-2026',
+		title: 'Arrival alarm audio plays through phone speaker instead of connected Bluetooth headphones',
+		reported: '22-Aug-2026',
 		description:
-			'Calendar Scanning may find upcoming trips from your calendar and list them correctly under Settings → Calendar Scanning → Review Pending Trips, but not send a notification to let you know they were found.',
+			'When an arrival alarm (Location or Transit) fires while your iPhone is connected to Bluetooth headphones or earbuds, the alarm notification appears correctly, but the alarm sound plays out loud from your iPhone\'s built-in speaker rather than through your headphones.',
 		workaround:
-			'In the app, go to Settings → Calendar Scanning, then turn "Notify Me About New Trips" off and back on. This prompts iOS to ask for notification permission — tap Allow when it appears. Once granted, future trips found by Calendar Scanning will notify you as expected.',
-		expectedResolution: 'Next build',
-		resolved: 'Pending',
+			'There isn\'t a workaround, because this isn\'t a GeoNap issue — it\'s how iOS handles alarms system-wide. Apple\'s built-in Clock app behaves the same way: alarms always play through the iPhone\'s speaker, even with Bluetooth headphones connected, so you\'re guaranteed to hear the alert even if your headphones are out of your ears, powered off, or out of range. GeoNap\'s alarms are built on Apple\'s own AlarmKit framework specifically so they behave exactly like a native Clock alarm, including this safety behavior.',
+		expectedResolution: 'N/A',
+		resolved: 'Build 1.170.20260821',
 	},
 ];
 ---

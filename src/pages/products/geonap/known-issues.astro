@@ -12,6 +12,16 @@ interface KnownIssue {
 
 const issues: KnownIssue[] = [
 	{
+		title: 'Duplicate Live Activity cards may appear on Lock Screen for the same alarm',
+		reported: '24-Aug-2026',
+		description:
+			'For Platinum-tier users with Live Activity / Dynamic Island enabled, an active alarm can occasionally show two Live Activity cards on the Lock Screen instead of one, each with a slightly different distance-remaining value. This can happen if the app is closed and then reopened in the background (for example, by an incoming location update) while an alarm is already being tracked.',
+		workaround:
+			'This is cosmetic — your alarm still fires correctly either way. You can swipe away the extra card, or just ignore it; it will clear on its own once the alarm fires or is turned off.',
+		expectedResolution: 'Next build',
+		resolved: 'Build 1.170.20260821',
+	},
+	{
 		title: 'Arrival alarm audio plays through phone speaker instead of connected Bluetooth headphones',
 		reported: '22-Aug-2026',
 		description:

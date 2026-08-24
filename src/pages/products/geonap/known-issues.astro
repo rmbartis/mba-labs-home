@@ -12,6 +12,16 @@ interface KnownIssue {
 
 const issues: KnownIssue[] = [
 	{
+		title: 'Alarms may disappear after restarting your phone',
+		reported: '24-Aug-2026',
+		description:
+			'In rare cases, restarting your iPhone can leave GeoNap\'s local alarm database in a corrupted state (this can happen with any app if the device loses power while data is being saved). When this happens, GeoNap safely rebuilds a fresh database rather than crashing on launch — but your previously created alarms may appear to be gone.',
+		workaround:
+			'If you have iCloud sync turned on for GeoNap (Settings → [Your Name] → iCloud), your alarms are likely still safely stored there and should reappear automatically the next time the app can reach iCloud. If they don\'t come back after a few minutes with an internet connection, you\'ll need to recreate them.',
+		expectedResolution: 'Next build',
+		resolved: 'Build 1.170.20260821',
+	},
+	{
 		title: 'Duplicate Live Activity cards may appear on Lock Screen for the same alarm',
 		reported: '24-Aug-2026',
 		description:

@@ -12,22 +12,12 @@ interface KnownIssue {
 
 const issues: KnownIssue[] = [
 	{
-		title: 'Alarms may disappear after restarting your phone',
-		reported: '24-Aug-2026',
-		description:
-			'In rare cases, restarting your iPhone can leave GeoNap\'s local alarm database in a corrupted state (this can happen with any app if the device loses power while data is being saved). When this happens, GeoNap safely rebuilds a fresh database rather than crashing on launch — but your previously created alarms may appear to be gone.',
-		workaround:
-			'If you have iCloud sync turned on for GeoNap (Settings → [Your Name] → iCloud), your alarms are likely still safely stored there and should reappear automatically the next time the app can reach iCloud. If they don\'t come back after a few minutes with an internet connection, you\'ll need to recreate them.',
-		expectedResolution: 'Next build',
-		resolved: 'Build 1.170.20260821',
-	},
-	{
 		title: 'Duplicate Live Activity cards may appear on Lock Screen for the same alarm',
 		reported: '24-Aug-2026',
 		description:
 			'For Platinum-tier users with Live Activity / Dynamic Island enabled, an active alarm can occasionally show two Live Activity cards on the Lock Screen instead of one, each with a slightly different distance-remaining value. This can happen if the app is closed and then reopened in the background (for example, by an incoming location update) while an alarm is already being tracked.',
 		workaround:
-			'This is cosmetic — your alarm still fires correctly either way. You can swipe away the extra card, or just ignore it; it will clear on its own once the alarm fires or is turned off.',
+			'This is cosmetic — your alarm still fires correctly either way. You can swipe away the extra card, or just ignore it; it will clear on its own once the alarm fires or is turned off. You can also clear it directly from GeoNap: go to Settings → Support → Clear Stale Notifications, which removes any leftover Live Activity or notification that no longer matches an alarm in your list.',
 		expectedResolution: 'Next build',
 		resolved: 'Build 1.170.20260821',
 	},

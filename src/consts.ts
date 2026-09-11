@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "MBA-Labs — You Dream, We Build";
 export const SITE_DESCRIPTION =
-  "MBA-Labs builds location-aware tools that help people rest better and budget smarter, wherever they happen to be.";
+  "MBA-Labs turns ideas into real products — apps and tools designed to make everyday life simpler, safer and smarter.";
